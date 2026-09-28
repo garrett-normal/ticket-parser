@@ -82,3 +82,13 @@ def invert_img(img):
 
 def write_img(path: str, img):
     cv2.imwrite(path, img)
+
+def draw_bounding_boxes(image, detections, threshold=0.25):
+    for bbox, text, score in detections:
+        if score > threshold:
+            cv2.rectangle(image, tuple(map(int, bbox[0])), tuple(map(int, bbox[2])), (0, 255, 0), 5)
+
+            cv2.putText(image, text, tuple(map(int, bbox[0])), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.65, (255, 0, 0), 2)
+
+def define_labels(image=cv2.typing.MatLike, detections=list, threshold=0.25):
+    pass
